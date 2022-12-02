@@ -25,24 +25,40 @@ function App() {
     console.log(activity);
     //first execution: add initial state
     //second execution: add initial state + activity
-    setActivities([...activities, {...activity} ]);
+    setActivities([...activities, { ...activity }]);
   }
 
   return (
     <Fragment>
       <form className="row g-3">
         <div class="col-md-6">
-          <label for="id" class="form-label">Id</label>
-          <input id="id" type="text" className="form-control" placeholder="input id" />
+          <label for="id" class="form-label">
+            Id
+          </label>
+          <input
+            id="id"
+            type="text"
+            className="form-control"
+            placeholder="input id"
+          />
         </div>
 
         <div class="col-md-6">
-          <label for="description" class="form-label">Description</label>
-          <input id="description" type="text" className="form-control" placeholder="input description" />
+          <label for="description" class="form-label">
+            Description
+          </label>
+          <input
+            id="description"
+            type="text"
+            className="form-control"
+            placeholder="input description"
+          />
         </div>
         <hr />
         <div className="col-">
-          <button className="btn btn-outline-secondary" onClick={addActivity}>Add Activity</button>
+          <button className="btn btn-outline-secondary" onClick={addActivity}>
+            Add Activity
+          </button>
         </div>
       </form>
 
@@ -51,10 +67,22 @@ function App() {
           {activities.map((act) => (
             <div key={act.id} className="card mb-2 shadow-sm">
               <div className="card-body">
-                <p className="card-text">{act.id} - {act.description}</p>
+                <div className="d-flex justify-content-between">
+                  <h5 className="card-title">
+                    <span className="badge text-bg-primary me-1">{act.id}</span>
+                    - Title
+                  </h5>
+                  <h6>
+                    Priority:
+                    <span className="text-black ms-1">
+                      <i className="me-1 fa-regular fa-face-frown" />
+                      High
+                    </span>
+                  </h6>
+                </div>
+                <p className="card-text">{act.description}</p>
               </div>
             </div>
-
           ))}
         </ul>
       </div>
