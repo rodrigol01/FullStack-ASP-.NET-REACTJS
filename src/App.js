@@ -31,8 +31,8 @@ function App() {
   return (
     <Fragment>
       <form className="row g-3">
-        <div class="col-md-6">
-          <label for="id" class="form-label">
+        <div className="col-md-6">
+          <label htmlFor="id" className="form-label">
             Id
           </label>
           <input
@@ -43,8 +43,8 @@ function App() {
           />
         </div>
 
-        <div class="col-md-6">
-          <label for="description" class="form-label">
+        <div className="col-md-6">
+          <label htmlFor="description" className="form-label">
             Description
           </label>
           <input
@@ -81,6 +81,16 @@ function App() {
                   </h6>
                 </div>
                 <p className="card-text">{act.description}</p>
+                <div className="d-flex justify-content-end border-top pt-2 m-0">
+                  <button className="btn btn-sm btn-outline-primary me-2 ">
+                    <i className="fas fa-pen me-2"></i>
+                    Editar
+                  </button>
+                  <button className="btn btn-sm btn-outline-danger">
+                    <i className="fas fa-trash me-2"></i>
+                    Deletar
+                  </button>
+                </div>
               </div>
             </div>
           ))}
