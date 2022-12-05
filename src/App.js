@@ -4,13 +4,13 @@ import "./App.css";
 let initialState = [
   {
     id: 1,
-    priority: "Low",
+    priority: "1",
     title: "Comer um bacon",
     description: "primeira atividade",
   },
   {
     id: 2,
-    priority: "Medium",
+    priority: "2",
     title: "Comer um pastel",
     description: "segunda atividade",
   },
@@ -34,25 +34,59 @@ function App() {
     setActivities([...activities, { ...activity }]);
   }
 
+  function deleteActivity(id){
+    const filteredActivities = activities.filter(activity => activity.id !== id);
+    setActivities([...filteredActivities])
+  }
+
+  function setPriorityMessage(param) {
+    switch (param) {
+      case "1":
+        return "Low";
+      case "2":
+        return "Medium";
+      case "3":
+        return "High";
+      default:
+        return "Undefined";
+    }
+  }
+
+  function setPriorityStyle(param, icon) {
+    switch (param) {
+      case "1":
+        return icon ? "face-smile" : "success";
+      case "2":
+        return icon ? "face-meh" : "info";
+      case "3":
+        return icon ? "face-frown" : "warning";
+      default:
+        return "";
+    }
+  }
+
   return (
     <Fragment>
       <form className="row g-3">
         <div className="col-md-6">
-          <label className="form-label">
-            Id
-          </label>
+          <label className="form-label">Id</label>
           <input
             id="id"
             type="text"
-            className="form-control"
+            className="form-control bg-secondary"
             placeholder="input id"
-          />
+            readOnly
+            value={
+              Math.max.apply(
+                Math,
+                activities.map((item) => item.id)
+              ) + 1
+            }
+          ></input>
         </div>
 
-        <div class="col-md-6">
-          <label className="form-label">
-            Priority
-          </label>
+        <div className="col-md-6">
+          <label className="form-label">Priority</label>
           <select id="priority" className="form-select">
             <option defaultValue={0}>Select...</option>
             <option value={1}>Low</option>
@@ -62,9 +96,7 @@ function App() {
         </div>
 
         <div className="col-md-6">
-          <label className="form-label">
-            Title
-          </label>
+          <label className="form-label">Title</label>
           <input
             id="title"
             type="text"
@@ -74,9 +106,7 @@ function App() {
         </div>
 
         <div className="col-md-6">
-          <label className="form-label">
-            Description
-          </label>
+          <label className="form-label">Description</label>
           <input
             id="description"
             type="text"
@@ -87,7 +117,7 @@ function App() {
         <hr />
         <div className="col-">
           <button className="btn btn-outline-secondary" onClick={addActivity}>
-            Add Activity
+            + Add Activity
           </button>
         </div>
       </form>
@@ -95,7 +125,12 @@ function App() {
       <div className="mt-3">
         <ul className="list-group">
           {activities.map((act) => (
-            <div key={act.id} className="card mb-2 shadow-sm">
+            <div
+              key={act.id}
+              className={
+                "card mb-2 shadow-sm border-" + setPriorityStyle(act.priority)
+              }
+            >
               <div className="card-body">
                 <div className="d-flex justify-content-between">
                   <h5 className="card-title">
@@ -104,9 +139,16 @@ function App() {
                   </h5>
                   <h6>
                     Priority:
-                    <span className="text-black ms-1">
-                      <i className="me-1 fa-regular fa-face-frown" />
-                      {act.priority}
+                    <span
+                      className={"ms-1 text-" + setPriorityStyle(act.priority)}
+                    >
+                      <i
+                        className={
+                          "me-1 fa-regular fa-" +
+                          setPriorityStyle(act.priority, true)
+                        }
+                      />
+                      {setPriorityMessage(act.priority)}
                     </span>
                   </h6>
                 </div>
@@ -116,7 +158,7 @@ function App() {
                     <i className="fas fa-pen me-2"></i>
                     Edit
                   </button>
-                  <button className="btn btn-sm btn-outline-danger">
+                  <button className="btn btn-sm btn-outline-danger" onClick={() => deleteActivity(act.id)}>
                     <i className="fas fa-trash me-2"></i>
                     Delete
                   </button>
