@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Activity(props) {
-  
   function setPriorityMessage(param) {
     switch (param) {
       case "1":
@@ -29,10 +28,11 @@ export default function Activity(props) {
   }
 
   return (
-
     <div
       key={props.id}
-      className={"card mb-2 shadow-sm border-" + setPriorityStyle(props.act.priority)}
+      className={
+        "card mb-2 shadow-sm border-" + setPriorityStyle(props.act.priority)
+      }
     >
       <div className="card-body">
         <div className="d-flex justify-content-between">
@@ -42,10 +42,13 @@ export default function Activity(props) {
           </h5>
           <h6>
             Priority:
-            <span className={"ms-1 text-" + setPriorityStyle(props.act.priority)}>
+            <span
+              className={"ms-1 text-" + setPriorityStyle(props.act.priority)}
+            >
               <i
                 className={
-                  "me-1 fa-regular fa-" + setPriorityStyle(props.act.priority, true)
+                  "me-1 fa-regular fa-" +
+                  setPriorityStyle(props.act.priority, true)
                 }
               />
               {setPriorityMessage(props.act.priority)}
@@ -55,12 +58,15 @@ export default function Activity(props) {
         <p className="card-text">{props.act.description}</p>
         <div className="d-flex justify-content-end border-top pt-2 m-0">
           <button className="btn btn-sm btn-outline-primary me-2 ">
-            <i className="fas fa-pen me-2"></i>
+            <i
+              className="fas fa-pen me-2"
+              onClick={() => props.getActivity(props.act.id)}
+            ></i>
             Edit
           </button>
           <button
             className="btn btn-sm btn-outline-danger"
-            onClick={() => props.deleteActivity(props.id)}
+            onClick={() => props.deleteActivity(props.act.id)}
           >
             <i className="fas fa-trash me-2"></i>
             Delete

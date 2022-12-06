@@ -1,16 +1,24 @@
 import React from "react";
 
 export default function AcitivityForm(props) {
+
+  const inputTextHandler = (e) => {
+    const {name, value} = e.target;
+
+    console.log(value)
+  }
+
   return (
     <form className="row g-3">
       <div className="col-md-6">
         <label className="form-label">Id</label>
         <input
+          name="id"
           id="id"
           type="text"
           className="form-control bg-secondary"
           placeholder="input id"
-          readOnly
+          onChange={inputTextHandler}
           value={
             Math.max.apply(
               Math,
@@ -51,7 +59,10 @@ export default function AcitivityForm(props) {
       </div>
       <hr />
       <div className="col-">
-        <button className="btn btn-outline-secondary" onClick={props.addActivity}>
+        <button
+          className="btn btn-outline-secondary"
+          onClick={props.addActivity}
+        >
           + Add Activity
         </button>
       </div>

@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import "./App.css";
 import AcitivityForm from "./components/AcitivityForm";
-import Activity from "./components/Activity";
+import ActivityList from "./components/ActivityList";
 
 let initialState = [
   {
@@ -20,6 +20,7 @@ let initialState = [
 
 function App() {
   const [activities, setActivities] = useState(initialState);
+  const [activity, setActivity] = useState(initialState);
 
   function addActivity(e) {
     e.preventDefault();
@@ -40,23 +41,28 @@ function App() {
     const filteredActivities = activities.filter(
       (activity) => activity.id !== id
     );
+
     setActivities([...filteredActivities]);
+  }
+
+  function getActivity(id) {
+    const activity = activities.filter((activity) => activity.id === id);
+
+    setActivity(activity[0]);
   }
 
   return (
     <Fragment>
-      <AcitivityForm addActivity={addActivity} activities={activities} />
-      <div className="mt-3">
-        <ul className="list-group">
-          {activities.map((act) => (
-            <Activity
-              key= {act.id}
-              act={act}
-              deleteActivity={deleteActivity}
-            />
-          ))}
-        </ul>
-      </div>
+      <AcitivityForm
+        addActivity={addActivity}
+        activities={activities}
+        selectedActivity={activity}
+      />
+      <ActivityList
+        activities={activities}
+        deleteActivity={deleteActivity}
+        getActivity={getActivity}
+      />
     </Fragment>
   );
 }
