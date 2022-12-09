@@ -57,11 +57,11 @@ export default function Activity(props) {
         </div>
         <p className="card-text">{props.act.description}</p>
         <div className="d-flex justify-content-end border-top pt-2 m-0">
-          <button className="btn btn-sm btn-outline-primary me-2 ">
-            <i
-              className="fas fa-pen me-2"
-              onClick={() => props.getActivity(props.act.id)}
-            ></i>
+          <button
+            className="btn btn-sm btn-outline-primary me-2 "
+            onClick={() => props.getActivity(props.act.id)}
+          >
+            <i className="fas fa-pen me-2"></i>
             Edit
           </button>
           <button

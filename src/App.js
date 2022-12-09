@@ -20,18 +20,21 @@ let initialState = [
 
 function App() {
   const [activities, setActivities] = useState(initialState);
-  const [activity, setActivity] = useState(initialState);
+  const [activity, setActivity] = useState({});
 
   function addActivity(e) {
     e.preventDefault();
     const activity = {
-      id: document.getElementById("id").value,
+      id:
+        Math.max.apply(
+          Math,
+          activities.map((item) => item.id)
+        ) + 1,
       priority: document.getElementById("priority").value,
       title: document.getElementById("title").value,
       description: document.getElementById("description").value,
     };
 
-    console.log(activity);
     //first execution: add initial state
     //second execution: add initial state + activity
     setActivities([...activities, { ...activity }]);

@@ -1,43 +1,36 @@
-import React from "react";
+import { useState, useEffect } from "react";
+
+const initialActivity = {
+  id: 0,
+  title: '',
+  priority: 0,
+  description: '',
+}
 
 export default function AcitivityForm(props) {
 
-  const inputTextHandler = (e) => {
-    const {name, value} = e.target;
+  useEffect(() => {
+    console.log('a')
+  }, [props.selectedActivity])
+  
 
-    console.log(value)
+  const [activity, setActivity] = useState(actualActivity());
+
+  const inputTextHandler = (e) => {
+    const { name, value } = e.target;
+
+    setActivity({ ...activity, [name]: value });
+  };
+
+  function actualActivity(){
+    if (props.selectedActivity.id !== 0)
+      return props.selectedActivity;
+    else
+      return initialActivity;
   }
 
   return (
     <form className="row g-3">
-      <div className="col-md-6">
-        <label className="form-label">Id</label>
-        <input
-          name="id"
-          id="id"
-          type="text"
-          className="form-control bg-secondary"
-          placeholder="input id"
-          onChange={inputTextHandler}
-          value={
-            Math.max.apply(
-              Math,
-              props.activities.map((item) => item.id)
-            ) + 1
-          }
-        ></input>
-      </div>
-
-      <div className="col-md-6">
-        <label className="form-label">Priority</label>
-        <select id="priority" className="form-select">
-          <option defaultValue={0}>Select...</option>
-          <option value={1}>Low</option>
-          <option value={2}>Medium</option>
-          <option value={3}>High</option>
-        </select>
-      </div>
-
       <div className="col-md-6">
         <label className="form-label">Title</label>
         <input
@@ -45,16 +38,38 @@ export default function AcitivityForm(props) {
           type="text"
           className="form-control"
           placeholder="input title"
+          name="title"
+          onChange={inputTextHandler}
+          value={activity.title}
         />
       </div>
 
       <div className="col-md-6">
+        <label className="form-label">Priority</label>
+        <select
+          id="priority"
+          className="form-select"
+          name="priority"
+          onChange={inputTextHandler}
+          value={activity.priority}
+        >
+          <option defaultValue={0}>Select...</option>
+          <option value={1}>Low</option>
+          <option value={2}>Medium</option>
+          <option value={3}>High</option>
+        </select>
+      </div>
+
+      <div className="col-md-12">
         <label className="form-label">Description</label>
-        <input
+        <textarea
           id="description"
           type="text"
           className="form-control"
           placeholder="input description"
+          name="description"
+          onChange={inputTextHandler}
+          value={activity.description}
         />
       </div>
       <hr />
