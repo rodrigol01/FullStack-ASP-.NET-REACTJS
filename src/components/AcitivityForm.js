@@ -29,19 +29,24 @@ export default function AcitivityForm(props) {
 
   const handleCancel = (e) => {
     e.preventDefault();
+    props.cancelActivity();
+    setActivity(initialActivity);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (props.selectedActivity.id !== 0) props.updateActivity(activity);
+    else props.addActivity(activity);
+
     setActivity(initialActivity);
   };
 
   return (
     <Fragment>
-      <h1>
-        Activity{" "}
-        {activity.id !== 0 && props.selectedActivity.id !== undefined
-          ? "number " + activity.id
-          : ""}
-      </h1>
+      <h1>Activity: {activity.id !== 0 ? activity.id : ""}</h1>
 
-      <form className="row g-3">
+      <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label className="form-label">Title</label>
           <input
@@ -84,13 +89,10 @@ export default function AcitivityForm(props) {
           />
         </div>
         <hr />
-        <div className="col-">
+        <div className="col-12">
           {activity.id === 0 ? (
-            <button
-              className="btn btn-outline-secondary"
-              onClick={props.addActivity}
-            >
-              <i className="fa fa-plus me-2"></i> Add Activity
+            <button className="btn btn-outline-secondary" type="submit">
+              <i className="fa fa-plus me-2"></i> Activity
             </button>
           ) : (
             <>

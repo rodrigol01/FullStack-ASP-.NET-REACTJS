@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import "./App.css";
 import AcitivityForm from "./components/AcitivityForm";
 import ActivityList from "./components/ActivityList";
@@ -19,25 +19,31 @@ let initialState = [
 ];
 
 function App() {
+  const [index, setIndex] = useState(0);
   const [activities, setActivities] = useState(initialState);
-  const [activity, setActivity] = useState({});
+  const [activity, setActivity] = useState({id: 0});
 
-  function addActivity(e) {
-    e.preventDefault();
-    const activity = {
-      id:
-        Math.max.apply(
-          Math,
-          activities.map((item) => item.id)
-        ) + 1,
-      priority: document.getElementById("priority").value,
-      title: document.getElementById("title").value,
-      description: document.getElementById("description").value,
-    };
+  useEffect(() => {
+    activities.length <= 0
+      ? setIndex(1)
+      : setIndex(
+          Math.max.apply(
+            Math,
+            activities.map((item) => item.id)
+          ) + 1
+        );
+  }, [activities]);
 
+  function addActivity(activ) {
     //first execution: add initial state
     //second execution: add initial state + activity
-    setActivities([...activities, { ...activity }]);
+    setActivities([
+      ...activities,
+      {
+        ...activ,
+        id: index,
+      },
+    ]);
   }
 
   function deleteActivity(id) {
@@ -54,9 +60,22 @@ function App() {
     setActivity(activity[0]);
   }
 
+  function updateActivity(activ) {
+    setActivities(
+      activities.map((item) => (item.id === activ.id ? activ : item))
+    );
+    setActivity({ id: 0 });
+  }
+
+  function cancelActivity() {
+    setActivity({ id: 0 });
+  }
+
   return (
     <Fragment>
       <AcitivityForm
+        updateActivity={updateActivity}
+        cancelActivity={cancelActivity}
         addActivity={addActivity}
         activities={activities}
         selectedActivity={activity}
