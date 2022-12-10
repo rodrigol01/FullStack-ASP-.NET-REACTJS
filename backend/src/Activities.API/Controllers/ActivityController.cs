@@ -11,27 +11,29 @@ namespace Activities.API.Controllers
     [Route("api/[controller]")]
     public class ActivityController : ControllerBase
     {
-        [HttpGet("GetActivity")]
+        public IEnumerable<Activity> Activities = new List<Activity>()
+        {
+            new(1),
+            new(2),
+            new(3),
+        };
+
+        [HttpGet("GetActivities")]
         public IEnumerable<Activity> Get()
         {
-            return new List<Activity>()
-            {
-                new(1),
-                new(2),
-                new(3),
-            };
+            return Activities;
         }
 
-        [HttpGet("GetActivity/{id:int}")]
-        public string Get(int id)
+        [HttpGet("GetActivityById/{id:int}")]
+        public Activity Get(int id)
         {
-            return $"aaa{id}";
+            return !Activities.Any() ? new Activity(id: 0) : Activities.First(item => item.Id == id);
         }
 
         [HttpPost("CreateActivity")]
-        public Activity CreateActivity()
+        public IEnumerable<Activity> CreateActivity(Activity activity)
         {
-            return new Activity(2);
+            return Activities.Append(activity);
         }
 
         [HttpPut("UpdateActivity/{id:int}")]
