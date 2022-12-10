@@ -30,6 +30,7 @@ namespace Activities.API
         {
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("Default")));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
