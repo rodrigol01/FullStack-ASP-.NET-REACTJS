@@ -44,7 +44,7 @@ export default function AcitivityForm(props) {
 
   return (
     <Fragment>
-      <h1>Activity: {activity.id !== 0 ? activity.id : ""}</h1>
+      <h1>Activity {activity.id !== 0 ? activity.id : ""}</h1>
 
       <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
@@ -87,9 +87,9 @@ export default function AcitivityForm(props) {
             onChange={inputTextHandler}
             value={activity.description}
           />
+          <hr />
         </div>
-        <hr />
-        <div className="col-12">
+        <div className="col-12 mt-0">
           {activity.id === 0 ? (
             <button className="btn btn-outline-secondary" type="submit">
               <i className="fa fa-plus me-2"></i> Activity
