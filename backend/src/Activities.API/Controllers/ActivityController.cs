@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Activities.API.Data;
 using Activities.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,41 +11,62 @@ namespace Activities.API.Controllers
     [Route("api/[controller]")]
     public class ActivityController : ControllerBase
     {
-        public IEnumerable<Activity> Activities = new List<Activity>()
+        private readonly DataContext _dataContext;
+
+        public ActivityController(DataContext dataContext)
         {
-            new(1),
-            new(2),
-            new(3),
-        };
+            _dataContext = dataContext;
+        }
 
         [HttpGet("GetActivities")]
         public IEnumerable<Activity> Get()
         {
-            return Activities;
+            return _dataContext.Activities;
         }
 
         [HttpGet("GetActivityById/{id:int}")]
         public Activity Get(int id)
         {
-            return !Activities.Any() ? new Activity(id: 0) : Activities.First(item => item.Id == id);
+            return _dataContext.Activities.FirstOrDefault(item => item.Id == id);
         }
 
         [HttpPost("CreateActivity")]
         public IEnumerable<Activity> CreateActivity(Activity activity)
         {
-            return Activities.Append(activity);
+            _dataContext.Activities.Add(activity);
+
+            if (_dataContext.SaveChanges() > 0)
+                return _dataContext.Activities;
+
+            throw new InvalidOperationException("Could not save the object");
         }
 
         [HttpPut("UpdateActivity/{id:int}")]
-        public string UpdateActivity(int id)
+        public Activity UpdateActivity(int id, Activity activity)
         {
-            return $"update my first method {id}";
+            if (activity.Id != id)
+                throw new InvalidOperationException("Could not update the activity because the id doesn't match");
+
+            _dataContext.Update(activity);
+
+            if (_dataContext.SaveChanges() > 0)
+                return _dataContext.Activities.FirstOrDefault(item => item.Id == id);
+
+            throw new InvalidOperationException(
+                "Could not save the activity, check the information and try again later");
         }
 
         [HttpDelete("DeleteActivity/{id:int}")]
-        public string DeleteActivity(int id)
+        public bool DeleteActivity(int id)
         {
-            return $"delete my first method {id}";
+            var activityToDelete = _dataContext.Activities.FirstOrDefault(item => item.Id == id);
+
+            if (activityToDelete is null)
+                throw new InvalidOperationException("Cannot delete. Item doesn't exists");
+
+            _dataContext.Remove(activityToDelete);
+
+            return _dataContext.SaveChanges() > 0;
         }
     }
 }
