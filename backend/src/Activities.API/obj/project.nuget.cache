@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "CzNFjRd4CuE1ASxzrx+cmEqTLnPQNs/jf1ELtGe9255MlCgUlD5ullkwFV2e6eHexDZ/sy5xQQ4srJyQYTcm9g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\FullStack-ASP-.NET-REACTJS\\backend\\src\\Activities.API\\Activities.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leo-b\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\leo-b\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\leo-b\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\leo-b\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\leo-b\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\leo-b\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
