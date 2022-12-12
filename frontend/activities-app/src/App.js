@@ -2,21 +2,28 @@ import { Fragment, useState, useEffect } from "react";
 import "./App.css";
 import AcitivityForm from "./components/AcitivityForm";
 import ActivityList from "./components/ActivityList";
+import api from './api/activity.js'
 
 function App() {
-  const [index, setIndex] = useState(0);
+  const [index] = useState(0);
   const [activities, setActivities] = useState([]);
   const [activity, setActivity] = useState({id: 0});
 
+
+  const getActivitiesFromApi = () => {
+    const response = api.get('activity');
+    return response.data;
+  }
+
   useEffect(() => {
-    activities.length <= 0
-      ? setIndex(1)
-      : setIndex(
-          Math.max.apply(
-            Math,
-            activities.map((item) => item.id)
-          ) + 1
-        );
+    const getActivities = () => {
+      const allActivities = getActivitiesFromApi();
+
+      if (allActivities)
+        setActivities(allActivities);
+    }
+
+    getActivities();
   }, [activities]);
 
   function addActivity(activ) {

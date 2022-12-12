@@ -18,20 +18,20 @@ namespace Activities.API.Controllers
             _dataContext = dataContext;
         }
 
-        [HttpGet("GetActivities")]
+        [HttpGet]
         public IEnumerable<Activity> Get()
         {
             return _dataContext.Activities;
         }
 
-        [HttpGet("GetActivityById/{id:int}")]
+        [HttpGet("{id:int}")]
         public Activity Get(int id)
         {
             return _dataContext.Activities.FirstOrDefault(item => item.Id == id);
         }
 
-        [HttpPost("CreateActivity")]
-        public IEnumerable<Activity> CreateActivity(Activity activity)
+        [HttpPost]
+        public IEnumerable<Activity> Post(Activity activity)
         {
             _dataContext.Activities.Add(activity);
 
@@ -41,8 +41,8 @@ namespace Activities.API.Controllers
             throw new InvalidOperationException("Could not save the object");
         }
 
-        [HttpPut("UpdateActivity/{id:int}")]
-        public Activity UpdateActivity(int id, Activity activity)
+        [HttpPut("{id:int}")]
+        public Activity Put(int id, Activity activity)
         {
             if (activity.Id != id)
                 throw new InvalidOperationException("Could not update the activity because the id doesn't match");
@@ -56,8 +56,8 @@ namespace Activities.API.Controllers
                 "Could not save the activity, check the information and try again later");
         }
 
-        [HttpDelete("DeleteActivity/{id:int}")]
-        public bool DeleteActivity(int id)
+        [HttpDelete("{id:int}")]
+        public bool Delete(int id)
         {
             var activityToDelete = _dataContext.Activities.FirstOrDefault(item => item.Id == id);
 
