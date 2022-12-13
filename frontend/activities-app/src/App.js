@@ -27,17 +27,18 @@ function App() {
     const response = await api.post("activity", activ);
     //first execution: add initial state
     //second execution: add initial state + activity
-    console.log(response.data)
     setActivities([...activities, response.data]);
   };
 
-  function deleteActivity(id) {
-    const filteredActivities = activities.filter(
-      (activity) => activity.id !== id
-    );
+  const deleteActivity = async (id) => {
+    if (await api.delete(`activity/${id}`)) {
+      const filteredActivities = activities.filter(
+        (activity) => activity.id !== id
+      );
 
-    setActivities([...filteredActivities]);
-  }
+      setActivities([...filteredActivities]);
+    }
+  };
 
   function getActivity(id) {
     const activity = activities.filter((activity) => activity.id === id);
@@ -45,9 +46,13 @@ function App() {
     setActivity(activity[0]);
   }
 
-  function updateActivity(activ) {
+  const updateActivity = async (activ) => {
+    const response = await api.put(`activity/${activ.id}`, activ);
+    
+
+    
     setActivities(
-      activities.map((item) => (item.id === activ.id ? activ : item))
+      activities.map((item) => (item.id === activ.id ? activ : response.data))
     );
     setActivity({ id: 0 });
   }
