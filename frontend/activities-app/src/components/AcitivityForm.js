@@ -89,17 +89,17 @@ export default function AcitivityForm(props) {
         </div>
         <div className="col-12 mt-0">
           {activity.id === 0 ? (
-            <button className="btn btn-outline-secondary" type="submit">
-              <i className="fa fa-plus me-2"></i> Activity
+            <button className="btn btn-outline-success" type="submit">
+              <i className="fa fa-plus me-2"></i> Save
             </button>
           ) : (
             <>
               <button className="btn btn-outline-success me-2" type="submit">
-                <i className="fa fa-plus"></i> Salvar
+                <i className="fa fa-plus me-1"></i> Save
               </button>
 
               <button className="btn btn-danger" onClick={handleCancel}>
-                Cancelar
+              <i className="fa fa-cancel me-1"></i> Cancel
               </button>
             </>
           )}

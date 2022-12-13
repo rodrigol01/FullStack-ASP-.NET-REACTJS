@@ -8,8 +8,8 @@ export default function ActivityList(props) {
         <Activity
           key={act.id}
           act={act}
-          deleteActivity={props.deleteActivity}
           getActivity={props.getActivity}
+          handleConfirmModalActivity={props.handleConfirmModalActivity}
         />
       ))}
     </div>
