@@ -31,12 +31,12 @@ namespace Activities.API.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<Activity> Post(Activity activity)
+        public Activity Post(Activity activity)
         {
             _dataContext.Activities.Add(activity);
 
             if (_dataContext.SaveChanges() > 0)
-                return _dataContext.Activities;
+                return activity;
 
             throw new InvalidOperationException("Could not save the object");
         }

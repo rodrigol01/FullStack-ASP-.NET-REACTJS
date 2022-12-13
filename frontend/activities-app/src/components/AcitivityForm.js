@@ -69,10 +69,10 @@ export default function AcitivityForm(props) {
             onChange={inputTextHandler}
             value={activity.priority}
           >
-            <option defaultValue={0}>Select...</option>
-            <option value={1}>Low</option>
-            <option value={2}>Medium</option>
-            <option value={3}>High</option>
+            <option defaultValue={'Undefined'}>Select...</option>
+            <option value={'Low'}>Low</option>
+            <option value={'Medium'}>Medium</option>
+            <option value={'High'}>High</option>
           </select>
         </div>
 

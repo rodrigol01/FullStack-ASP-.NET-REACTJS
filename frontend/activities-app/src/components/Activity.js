@@ -1,26 +1,14 @@
 import React from "react";
 
 export default function Activity(props) {
-  function setPriorityMessage(param) {
-    switch (param) {
-      case "1":
-        return "Low";
-      case "2":
-        return "Medium";
-      case "3":
-        return "High";
-      default:
-        return "Undefined";
-    }
-  }
 
   function setPriorityStyle(param, icon) {
     switch (param) {
-      case "1":
+      case "Low":
         return icon ? "face-smile" : "success";
-      case "2":
+      case "Medium":
         return icon ? "face-meh" : "info";
-      case "3":
+      case "High":
         return icon ? "face-frown" : "warning";
       default:
         return "";
@@ -51,7 +39,7 @@ export default function Activity(props) {
                   setPriorityStyle(props.act.priority, true)
                 }
               />
-              {setPriorityMessage(props.act.priority)}
+              {props.act.priority}
             </span>
           </h6>
         </div>

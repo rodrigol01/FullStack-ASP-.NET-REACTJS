@@ -2,41 +2,34 @@ import { Fragment, useState, useEffect } from "react";
 import "./App.css";
 import AcitivityForm from "./components/AcitivityForm";
 import ActivityList from "./components/ActivityList";
-import api from './api/activity.js'
+import api from "./api/activity.js";
 
 function App() {
-  const [index] = useState(0);
   const [activities, setActivities] = useState([]);
-  const [activity, setActivity] = useState({id: 0});
+  const [activity, setActivity] = useState({ id: 0 });
 
-
-  const getActivitiesFromApi = () => {
-    const response = api.get('activity');
+  const getActivitiesFromApi = async () => {
+    const response = await api.get("activity");
     return response.data;
-  }
+  };
 
   useEffect(() => {
-    const getActivities = () => {
-      const allActivities = getActivitiesFromApi();
+    const getActivities = async () => {
+      const allActivities = await getActivitiesFromApi();
 
-      if (allActivities)
-        setActivities(allActivities);
-    }
+      if (allActivities) setActivities(allActivities);
+    };
 
     getActivities();
-  }, [activities]);
+  }, []);
 
-  function addActivity(activ) {
+  const addActivity = async (activ) => {
+    const response = await api.post("activity", activ);
     //first execution: add initial state
     //second execution: add initial state + activity
-    setActivities([
-      ...activities,
-      {
-        ...activ,
-        id: index,
-      },
-    ]);
-  }
+    console.log(response.data)
+    setActivities([...activities, response.data]);
+  };
 
   function deleteActivity(id) {
     const filteredActivities = activities.filter(
