@@ -44,8 +44,6 @@ export default function AcitivityForm(props) {
 
   return (
     <Fragment>
-      <h1>Activity {activity.id !== 0 ? activity.id : ""}</h1>
-
       <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label className="form-label">Title</label>
@@ -69,10 +67,10 @@ export default function AcitivityForm(props) {
             onChange={inputTextHandler}
             value={activity.priority}
           >
-            <option defaultValue={'Undefined'}>Select...</option>
-            <option value={'Low'}>Low</option>
-            <option value={'Medium'}>Medium</option>
-            <option value={'High'}>High</option>
+            <option defaultValue={"Undefined"}>Select...</option>
+            <option value={"Low"}>Low</option>
+            <option value={"Medium"}>Medium</option>
+            <option value={"High"}>High</option>
           </select>
         </div>
 
