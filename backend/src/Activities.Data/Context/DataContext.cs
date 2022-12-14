@@ -1,14 +1,20 @@
-﻿using Activities.API.Models;
+﻿using System.Diagnostics;
+using Activities.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 
-namespace Activities.API.Data
+namespace Activities.Data.Context
 {
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> contextOptions) : base(contextOptions)
         {
         }
-        
+
         public DbSet<Activity> Activities { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ActivityMap());
+        }
     }
 }

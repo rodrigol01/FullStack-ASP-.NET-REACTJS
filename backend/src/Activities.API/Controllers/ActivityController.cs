@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Activities.API.Data;
-using Activities.API.Models;
+using Activities.Data.Context;
+using Activities.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Activities.API.Controllers

@@ -1,4 +1,4 @@
-﻿namespace Activities.API.Enums
+﻿namespace Activities.Domain.Enums
 {
     public enum Priority
     {
