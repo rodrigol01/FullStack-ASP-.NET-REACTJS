@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using Activities.Data.Mappings;
+﻿using Activities.Data.Mappings;
+using Activities.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Activities.Data.Context
