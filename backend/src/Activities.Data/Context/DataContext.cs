@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Activities.Data.Mappings;
+﻿using Activities.Data.Mappings;
 using Activities.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +10,7 @@ namespace Activities.Data.Context
         {
         }
 
-        public DbSet<Activity> Activities { get; set; } = null!;
+        public DbSet<Activity> Activities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

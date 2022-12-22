@@ -27,10 +27,11 @@ namespace Activities.Data.Repositories
 
         public async Task<Activity?> GetByIdAsync(int id)
         {
-            return await _dataContext.Activities
+            var a = _dataContext.Activities
                 .AsNoTracking()
                 .OrderByDescending(activity => activity.Id)
                 .FirstOrDefaultAsync(activity => activity.Id == id);
+            return await a;
         }
 
         public async Task<Activity?> GetByTitleAsync(string title)

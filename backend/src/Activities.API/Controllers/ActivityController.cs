@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Activities.Data.Context;
 using Activities.Domain.Entities;
 using Activities.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;

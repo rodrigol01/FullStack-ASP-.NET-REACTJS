@@ -26,14 +26,12 @@ namespace Activities.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");

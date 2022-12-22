@@ -15,6 +15,7 @@ namespace Activities.Domain.Entities
         public Activity()
         {
             CreatingTimeDate = DateTime.Now;
+            ConclusionTimeDate = null;
         }
 
         public Activity(int id, string title, string description) : this()

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Activities.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221221234211_initial")]
+    [Migration("20221222013758_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,14 +28,12 @@ namespace Activities.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");

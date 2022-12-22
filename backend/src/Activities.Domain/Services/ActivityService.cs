@@ -34,7 +34,7 @@ namespace Activities.Domain.Services
             if (model.ConclusionTimeDate != null)
                 throw new InvalidOperationException("Cannot update already finished activity");
 
-            if (await _activityRepository.GetByIdAsync(model.Id) != null)
+            if (await _activityRepository.GetByIdAsync(model.Id) == null)
                 return null;
 
             _activityRepository.Update(model);
