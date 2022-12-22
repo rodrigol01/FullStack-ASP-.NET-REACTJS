@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Activities.Data.Context;
+using Activities.Data.Repositories;
+using Activities.Domain.Interfaces.Repositories;
+using Activities.Domain.Interfaces.Services;
+using Activities.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +36,13 @@ namespace Activities.API
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("Default")));
 
+            services
+                .AddScoped<IActivityService, ActivityService>()
+                .AddScoped<IActivityRepository, ActivityRepository>();
+
             services.AddControllers().AddJsonOptions(options =>
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Activities.API", Version = "v1" });
