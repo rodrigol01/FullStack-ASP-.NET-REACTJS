@@ -8,8 +8,9 @@ namespace Activities.Domain.Entities
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
+        
         public Priority Priority { get; set; }
-        private DateTime CreatingTimeDate { get; set; }
+        public DateTime CreatingTimeDate { get; set; }
         public DateTime? ConclusionTimeDate { get; set; }
 
         public Activity()

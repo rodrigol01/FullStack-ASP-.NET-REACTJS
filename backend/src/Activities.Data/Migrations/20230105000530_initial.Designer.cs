@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Activities.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221222013758_initial")]
+    [Migration("20230105000530_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,9 @@ namespace Activities.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("ConclusionTimeDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatingTimeDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")

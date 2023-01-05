@@ -61,7 +61,7 @@ namespace Activities.API.Controllers
         {
             try
             {
-                var toUpdate = await _activityService.UpdateActivity(activity);
+                var toUpdate = await _activityService.AddActivity(activity);
 
                 if (toUpdate == null)
                     return NoContent();

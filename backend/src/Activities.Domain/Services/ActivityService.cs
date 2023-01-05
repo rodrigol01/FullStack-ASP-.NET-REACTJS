@@ -18,7 +18,8 @@ namespace Activities.Domain.Services
 
         public async Task<Activity?> AddActivity(Activity model)
         {
-            if (await _activityRepository.GetByTitleAsync(model.Title).ConfigureAwait(false) != null)
+            if (model.Title != null &&
+                await _activityRepository.GetByTitleAsync(model.Title).ConfigureAwait(false) != null)
                 throw new InvalidOperationException("Already exists an activity with this title");
 
             if (await _activityRepository.GetByIdAsync(model.Id) != null)

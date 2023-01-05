@@ -25,6 +25,9 @@ namespace Activities.Data.Migrations
                     b.Property<DateTime?>("ConclusionTimeDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("CreatingTimeDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Description")
                         .HasColumnType("varchar(255)");
 
