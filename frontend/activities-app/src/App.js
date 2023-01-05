@@ -1,8 +1,8 @@
 import { Fragment, useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./App.css";
-import AcitivityForm from "./components/AcitivityForm";
-import ActivityList from "./components/ActivityList";
+import AcitivityForm from "./pages/activities/AcitivityForm";
+import ActivityList from "./pages/activities/ActivityList";
 import api from "./api/activity.js";
 
 function App() {
