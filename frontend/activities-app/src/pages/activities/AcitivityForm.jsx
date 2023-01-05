@@ -99,7 +99,7 @@ export default function AcitivityForm(props) {
               </button>
 
               <button className="btn btn-danger" onClick={handleCancel}>
-              <i className="fa fa-cancel me-1"></i> Cancel
+                <i className="fa fa-cancel me-1"></i> Cancel
               </button>
             </>
           )}
