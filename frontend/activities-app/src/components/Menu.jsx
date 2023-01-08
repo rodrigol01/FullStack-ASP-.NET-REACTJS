@@ -5,7 +5,7 @@ export default function Menu() {
     return (
         <Navbar bg="dark" expand="lg" variant='dark'>
             <Container>
-                <Navbar.Brand as={NavLink} to='/home'>To do List</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to='/'>Home</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
